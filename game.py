@@ -34,7 +34,7 @@ def UserTurn(piecestack, board, piece):
 def ComputerTurn(piecestack, board, piece, turn):
     piecestack.TakePiece(piece)
 
-    (bestx, besty, bestpiece, bestscore) = RootOfAlphaBetaSearch(board, piecestack, piece, turn, int(3+0.2*(15-len(piecestack))))
+    (bestx, besty, bestpiece, bestscore) = RootOfAlphaBetaSearch(board, piecestack, piece, turn, int(5+0.2*(15-len(piecestack))),8.0)
     board.place_piece(piece, bestx, besty)
     print('Best score: '+str(bestscore))
     return bestpiece
@@ -53,7 +53,7 @@ while True:
     score = evaluate.get_score(board, turn)
     print('Score: {0}'.format(score))
     if abs(score) == WIN:
-        print ('Current player wins')
+        print ('Player wins')
         break
 
     piecestack.show()
@@ -65,6 +65,12 @@ while True:
     print(get_piece_text(piece))
     piece = ComputerTurn(piecestack, board, piece, turn)
     turn.change()
+    score = evaluate.get_score(board, turn)
+    print('Score: {0}'.format(score))
+    if abs(score) == WIN:
+        print ('Computer wins')
+        board.show()
+        break
 
 
 
