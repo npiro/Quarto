@@ -179,3 +179,22 @@ class Turn(object):
             return 1
         else:
             return -1
+
+class Move(object):
+    def __init__(self, x, y, piece, next_piece, score):
+        self._x = x
+        self._y = y
+        self._piece = piece
+        self._next_piece = next_piece
+        self._score = score
+
+    def get_move(self):
+        return (self._x, self._y, self._piece, self._next_piece, self._score)
+
+    def set_score(self, score):
+        self._score = score
+
+    def get_score(self):
+        return self._score
+
+
